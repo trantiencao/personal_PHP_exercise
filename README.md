@@ -1,4 +1,4 @@
-<h1><img style="float: left" src="NTU_logo.png" width="50" height="50"><center>BÀI TẬP CÁ NHÂN PHÁT TRIỂN PHẦN MỀM MÃ NGUỒN MỞ - LAP6</center></h1>
+<h2><img style="float: left" src="NTU_logo.png" width="50" height="50"><center>BÀI TẬP CÁ NHÂN PHÁT TRIỂN PHẦN MỀM MÃ NGUỒN MỞ - LAP6</center></h2>
 
 <h4>TRẦN TIẾN CAO - 59130151
   
