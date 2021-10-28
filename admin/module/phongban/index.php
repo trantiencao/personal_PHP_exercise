@@ -68,6 +68,7 @@ for ($i = 1; $i <= $totalPages; $i++) {
                         </tr>
 
                     <?php
+                    $stt++;
                     }
                     ?>
                 </tbody>

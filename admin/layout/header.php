@@ -78,6 +78,7 @@ if (isset($_POST['logout'])) {
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/personal_PHP_exercise/admin/module/phongban/add.php">Thêm mới</a>
+                        <a class="collapse-item" href="/personal_PHP_exercise/admin/module/phongban/find.php">Tìm kiếm</a>
                         <a class="collapse-item" href="/personal_PHP_exercise/admin/module/phongban/index.php">Danh sách phòng ban</a>
                     </div>
                 </div>
@@ -93,6 +94,7 @@ if (isset($_POST['logout'])) {
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/personal_PHP_exercise/admin/module/loainhanvien/add.php">Thêm mới</a>
+                        <a class="collapse-item" href="/personal_PHP_exercise/admin/module/loainhanvien/find.php">Tìm kiếm</a>
                         <a class="collapse-item" href="/personal_PHP_exercise/admin/module/loainhanvien/index.php">Danh sách loại nhân viên</a>
                     </div>
                 </div>
@@ -108,6 +110,7 @@ if (isset($_POST['logout'])) {
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/personal_PHP_exercise/admin/module/nhanvien/add.php">Thêm mới</a>
+                        <a class="collapse-item" href="/personal_PHP_exercise/admin/module/nhanvien/find.php">Tìm kiếm</a>
                         <a class="collapse-item" href="/personal_PHP_exercise/admin/module/nhanvien/index.php">Danh sách nhân viên</a>
                     </div>
                 </div>
@@ -136,21 +139,21 @@ if (isset($_POST['logout'])) {
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php if (isset($_SESSION['login']) && $_SESSION['login'] == true) echo $_SESSION['name']; else echo '#error';?></span>
+                                <span class="mr-2 d-none d-lg-inline text-white big"><?php if (isset($_SESSION['login']) && $_SESSION['login'] == true) echo $_SESSION['name']; else echo '#error';?></span>
                                 <i class="fas fa-user-shield"></i>
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in bg-success"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <!-- <a class="dropdown-item" href="#">
                                     <input type="button" value="Profile"
                                         style="background: transparent; color: black; border: none; cursor: pointer;">
                                 </a>
-                                <div class="dropdown-divider"></div>
+                                <div class="dropdown-divider"></div> -->
                                 <a class="dropdown-item">
                                     <form action="" method="post">
                                         <input type="submit" name="logout" value="Logout"
-                                            style="background: transparent; color: black; border: none; cursor: pointer;">
+                                            style="background:transparent; color:white; border:none; cursor:pointer;">
                                     </form>
                                 </a>
                             </div>

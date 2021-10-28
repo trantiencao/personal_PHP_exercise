@@ -15,7 +15,7 @@ while ($row = mysqli_fetch_array($result)) {
     $NS = $row[3];
     $GT = $row[4];
     $DC = $row[5];
-    $ten_hinh = $row[6];
+    $ANH = $row[6];
     $LOAINV = $row[7];
     $PHONGBAN = $row[8];
 }
@@ -33,25 +33,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $LOAINV = $_POST['loainv'];
         $PHONGBAN = $_POST['phongban'];
 
-        /* Upload file */
-        if ($_FILES['fileUpload']['name'] != null) {
-            //Bước 1: Tạo đường dẫn upload file ảnh
-            $target_dir = "../../../public/uploads/anhnhanvien/";
-            //Bước 2: kiểm tra file hình ảnh và thực hiện upload file
-            $ten_hinh = $_FILES['fileUpload']['name'];
-            $type = $_FILES['fileUpload']['type'];
-            $size = $_FILES['fileUpload']['size'];
-            $tmp = $_FILES['fileUpload']['tmp_name'];
-            if (($type == 'image/jpeg' || ($type == 'image/jpg') || ($type == 'image/png') && $size < 8000)) {
-                move_uploaded_file($tmp, $target_dir . $ten_hinh);
-            }
-        }
         $query = "UPDATE `nhanvien` SET `MANV`='$MA',`HO`='$HO',`TEN`='$TEN',`NGAYSINH`='$NS',`GIOITINH`='$GT',`DIACHI`='$DC',`ANH`='$ANH',`MALOAINV`='$LOAINV',`MAPHONG`='$PHONGBAN' WHERE MANV='$id'";
         $result = mysqli_query($connect, $query);
-
-        $_SESSION['success'] = 'Cập nhật thành công';
-        redirectUrl('/personal_PHP_exercise/admin/module/nhanvien/index.php');
-    } else echo "<script type='text/javascript'>alert('Vui lòng nhập đầy đủ dữ liệu');</script>";
+        if ($result) {
+            /* Upload file */
+            if ($_FILES['fileUpload']['type'] == 'image/jpeg' || ($_FILES['fileUpload']['type'] == 'image/jpg') || ($_FILES['fileUpload']['type'] == 'image/png')) {
+                if ($_FILES['fileUpload']['size'] < 8000) {
+                    //Bước 1: Tạo đường dẫn upload file ảnh
+                    $target_save = "../../../public/uploads/anhnhanvien/";
+                    //Bước 2: thực hiện upload file
+                    move_uploaded_file($_FILES['fileUpload']['tmp_name'], $target_save . $_FILES['fileUpload']['name']);
+                } else
+                    echo "<script type='text/javascript'>alert('Vui lòng tải tệp có kích thước dưới 8MB');</script>";
+            } else
+                echo "<script type='text/javascript'>alert('Định dạng không phù hợp, đảm bảo tải lên tệp: PNG, JPG, JPEG');</script>";
+            $_SESSION['success'] = 'Cập nhật thành công';
+            redirectUrl('/personal_PHP_exercise/admin/module/nhanvien/index.php');
+        } else
+            echo "<script type='text/javascript'>alert('Cập nhập không thành công');</script>";
+    } else
+        echo "<script type='text/javascript'>alert('Vui lòng nhập đầy đủ dữ liệu');</script>";
 }
 ?>
 
@@ -59,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- Begin Page Content -->
 <h1 align="center">Chỉnh Sửa NHÂN VIÊN</h1>
 <div class="col-md-12">
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="exampleInputEmail1">MÃ NV</label>
             <input type="text" class="form-control" id="exampleInputEmail1" name="MA" value="<?php echo $MA ?>">
@@ -90,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Ảnh</label>
-            <input class="form-control-file" type="file" class="form-control" name="fileUpload" value="<?php echo $ten_hinh; ?>">
+            <input class="form-control-file" type="file" class="form-control" name="fileUpload" value="<?php echo $ANH; ?>">
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Loại nhân viên</label>
